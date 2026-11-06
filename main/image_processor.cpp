@@ -56,7 +56,7 @@ bool ImageProcessor::next()
         if (load()) {
             return true;
         }
-        printf("%s: obrazok sa nepodarilo nacitat\n", name());
+        printf("%s: failed to load the image\n", name());
     }
     return false;
 }

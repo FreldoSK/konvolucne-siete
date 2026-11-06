@@ -37,12 +37,12 @@ extern "C" void app_main(void)
     tflite::MicroInterpreter interpreter(tflite::GetModel(g_model), resolver,
                                          tensor_arena, kArenaSize);
     if (interpreter.AllocateTensors() != kTfLiteOk) {
-        printf("Model sa nepodarilo nacitat\n");
+        printf("Failed to load the model\n");
         return;
     }
 
     if (!images.begin()) {
-        printf("Obrazky sa nepodarilo otvorit\n");
+        printf("Failed to open the images\n");
         return;
     }
 
@@ -57,7 +57,7 @@ extern "C" void app_main(void)
 
         // Run the neural network
         if (interpreter.Invoke() != kTfLiteOk) {
-            printf("%s: klasifikacia zlyhala\n", images.name());
+            printf("%s: classification failed\n", images.name());
             continue;
         }
 
